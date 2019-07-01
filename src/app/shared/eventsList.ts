@@ -11,7 +11,7 @@ export const events = [
         name: 'React meetup',
         imageUrl: 'https://cdn.pixabay.com/photo/2019/06/25/04/40/light-4297386_960_720.jpg',
         date: 1572705122000,
-        availableSeats: 9
+        availableSeats: 4
     },
     {
         id: 3,

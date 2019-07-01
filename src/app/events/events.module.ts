@@ -5,14 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { EventsListingComponent } from './events-listing/events-listing.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FilterPipe } from '../shared/pipes/filter.pipe';
 
 const routes: Routes = [
   { path: '', component: EventsListingComponent }
 ];
 
 @NgModule({
-  declarations: [EventsListingComponent, FilterPipe],
+  declarations: [EventsListingComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

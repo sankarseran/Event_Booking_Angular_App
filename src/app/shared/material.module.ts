@@ -29,6 +29,7 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FilterPipe } from './pipes/filter.pipe';
+import { PreventKeyInputDirective } from './directives/prevent-key-input.directive';
 // set required material modules for the applcation
 const reqModules = [
   MatToolbarModule,
@@ -63,7 +64,7 @@ const reqModules = [
 
 @NgModule({
   imports: reqModules,
-  exports: reqModules,
-  declarations: []
+  exports: [reqModules, PreventKeyInputDirective, FilterPipe],
+  declarations: [PreventKeyInputDirective, FilterPipe]
 })
 export class MaterialModule { }

@@ -1,3 +1,53 @@
 <div class="book-header">
-  <p>Number of available seats: {{selectedEvent.availableSeats}}</p>
+  <p>Number of available seats: {{selectedEvent?.availableSeats}} <span *ngIf="isDisable">-</span><span
+      *ngIf="isDisable" class="tickets-booked">Tickets booked</span></p>
+</div>
+<div class="book-container">
+  <form (ngSubmit)="submit()" [formGroup]="bookForm">
+    <mat-form-field>
+      <input matInput placeholder="Name" appPreventKeyInput [AlphaSpace]="true" formControlName="userName">
+      <mat-error *ngIf="bookForm.get('userName').invalid">
+        {{getUserNameErrorMessage()}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="bookForm.get('email').invalid">
+        {{getEmailErrorMessage()}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Phone Number" appPreventKeyInput [OnlyNumber]="true" formControlName="phoneNumber">
+      <mat-error *ngIf="bookForm.get('phoneNumber').invalid">
+        {{getPhoneErrorMessage()}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="No. of Seats" (selectionChange)="seatsValueChanged()" formControlName="numberOfSeats">
+        <mat-option *ngFor="let seat of seats" [value]="seat">
+          {{seat}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="bookForm.get('numberOfSeats').invalid">
+        {{getSeatsErrorMessage()}}
+      </mat-error>
+    </mat-form-field>
+    <ng-container formArrayName="attendees" *ngFor="let attendee of formAttendees.controls; let i = index;">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input matInput placeholder="Name of Attendee {{i + 2}}" formControlName="attendee">
+          <mat-error *ngIf="attendee.get('attendee').hasError('required')">
+            Please enter the name of Attendee {{i + 2}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </ng-container>
+    <div class="action-container">
+      <button type="reset" [routerLink]="['']" [disabled]="isDisable" mat-stroked-button>Cancel</button>
+      <button type="submit" [disabled]="isDisable" mat-stroked-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="isDisable">
+  {{bookForm.value | json}}
 </div>

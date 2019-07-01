@@ -1,7 +1,39 @@
 .book-header {
     padding: 16px;
     background: #f1f1f1;
+
     p {
         margin: 0px;
+        .tickets-booked {
+            font-weight: bold;
+            color: #00b80f;
+        }
+    }
+}
+
+.book-container {
+    width: 30%;
+    margin: auto;
+    padding: 16px;
+
+    mat-form-field {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .action-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0px;
+        button {
+            margin-right: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .book-container {
+        width: 70%;
+        margin: auto;
     }
 }
