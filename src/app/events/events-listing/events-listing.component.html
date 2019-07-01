@@ -1,0 +1,30 @@
+<div class="event-listing-container">
+  <div class="list-header">
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" placeholder="SEARCH EVENTS" [(ngModel)]="searchKey">
+      <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="searchKey=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" class="list-container">
+    <ng-container *ngFor="let event of events | eventFilter : searchKey as results">
+      <mat-card fxFlex="0 1 calc(25% - 10px)" fxFlex.lt-md="0 1 calc(50% - 10px)" fxFlex.lt-sm="100%">
+        <div class="content">
+          <img src="{{event.imageUrl}}" alt="">
+          <p>
+            {{event.name}}
+          </p>
+          <p>ON:  {{event?.date | date : 'MMM, dd yyyy'}} <span *ngIf="event?.availableSeats"> - </span> <span *ngIf="event?.availableSeats" class="available-seats">Seats: {{event?.availableSeats}}</span></p>
+          <div class="content-bottom">
+            <h4  *ngIf="!event?.availableSeats" class="sold-out"> Sold out!</h4>
+            <button *ngIf="event?.availableSeats" mat-raised-button color="primary">Book Now</button>
+          </div>
+        </div>
+      </mat-card>
+    </ng-container>
+    <div class="no-result-found" *ngIf="!(events | eventFilter : searchKey)?.length">
+      No results found!
+    </div>
+  </div>
+</div>
