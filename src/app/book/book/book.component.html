@@ -35,7 +35,7 @@
     <ng-container formArrayName="attendees" *ngFor="let attendee of formAttendees.controls; let i = index;">
       <div [formGroupName]="i">
         <mat-form-field>
-          <input matInput placeholder="Name of Attendee {{i + 2}}" formControlName="attendee">
+          <input matInput appPreventKeyInput [AlphaSpace]="true" placeholder="Name of Attendee {{i + 2}}" formControlName="attendee">
           <mat-error *ngIf="attendee.get('attendee').hasError('required')">
             Please enter the name of Attendee {{i + 2}}
           </mat-error>
