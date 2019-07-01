@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path: '', loadChildren: './events/events.module#EventsModule' }
+      { path: '', loadChildren: './events/events.module#EventsModule' },
+      { path: 'book', loadChildren: './book/book.module#BookModule' }
     ]
   }
 ];
